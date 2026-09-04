@@ -8,8 +8,7 @@
 
 <div class="text-center">
     <h1 class="display-4">
-        @(
-            ViewBag.TipoTela == "Criar"
+        @(ViewBag.TipoTela == "Criar"
             ? "Criar Funcionário"
             : "Editar Funcionário"
         )
@@ -18,13 +17,11 @@
 
 <form
     asp-controller="Funcionario"
-    asp-action="
-    @(
-        ViewBag.TipoTela == "Criar" 
+    asp-action="@(ViewBag.TipoTela == "Criar" 
         ? "Criar"
         : "Editar"
     )"
-    method="post"
+    method="POST"
 >
     <input type="hidden" asp-for="Id" />
     <div class="mb-3">
@@ -41,7 +38,9 @@
         <input type="text"
                class="form-control"
                placeholder="Digite o CPF do funcionário"
-               asp-for="CPF" />
+               asp-for="CPF" 
+               id="cpf"
+               />
     </div>
 
     <div class="mb-3">
@@ -59,4 +58,24 @@
                placeholder="Digite o salário do funcionário"
                asp-for="Salario" />
     </div>
+
+    <button
+        type="submit"
+        class="btn btn-primary d-block w-100 mb-3"
+    >
+     @(ViewBag.TipoTela == "Criar" ? "Criar" : "Editar")
+    </button>
+    <a 
+        class="btn btn-secondary d-block w-100 mb-3"
+    >
+        Voltar
+    </a>
 </form>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/imask/7.6.1/imask.min.js"></script>
+<script>
+    IMask(document.getElementById("cpf"), {
+        mask: "000.000.000-00"
+    })
+</script>
+
+

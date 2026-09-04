@@ -15,5 +15,12 @@ namespace Projeto_Cadastro_MVC_3DSTB.Repository
         {
             return dbContext.Funcionarios.ToList();
         }
+
+        public Funcionario Adicionar(Funcionario funcionario)
+        {
+            dbContext.Funcionarios.Add(funcionario);
+            dbContext.SaveChanges();
+            return funcionario;
+        }
     }
 }
